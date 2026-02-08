@@ -1,0 +1,47 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lisa, will you be my Valentine? 💝</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card" id="card">
+    <div class="header">
+      <h1 id="title">Hi Lisa 💖</h1>
+      <p id="subtitle">I made this little thing just for you.</p>
+    </div>
+
+    <section class="panel" id="panel">
+      <p class="question" id="question"></p>
+
+      <div class="controls" id="controls">
+        <button class="btn primary" id="yesBtn">Yes</button>
+        <button class="btn ghost" id="noBtn">No</button>
+      </div>
+
+      <div class="quiz hidden" id="quiz">
+        <p class="quizTitle" id="quizTitle"></p>
+        <div class="quizRow">
+          <input id="quizInput" type="text" placeholder="your answer..." autocomplete="off" />
+          <button class="btn primary" id="quizSubmit">Submit</button>
+        </div>
+        <p class="hint" id="quizHint"></p>
+      </div>
+
+      <div class="final hidden" id="final">
+        <h2 id="finalTitle"></h2>
+        <p id="finalText"></p>
+        <div class="emojiCloud" id="emojiCloud" aria-hidden="true"></div>
+        <button class="btn primary" id="replay">Replay 💞</button>
+      </div>
+    </section>
+
+    <p class="tiny">Tip: try clicking “No” 😌</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
