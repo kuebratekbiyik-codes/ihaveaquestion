@@ -1,13 +1,21 @@
 /* style.css */
 :root{
-  --bg1:#ff9a9e;
-  --bg2:#fad0c4;
-  --text:#ff4757;
-  --btn:#ff6b6b;
-  --btnHover:#ff8787;
-  --card: rgba(255,255,255,.86);
-  --shadow: rgba(0,0,0,.18);
+  /* Background gradient */
+  --bg1:#5E081E;   /* dark wine red */
+  --bg2:#E48397;   /* soft pink */
+
+  /* Text & accents */
+  --text:#B51A3A;  /* strong valentine red */
+
+  /* Buttons */
+  --btn:#E24767;       /* bright pink/red */
+  --btnHover:#E48397; /* lighter hover */
+
+  /* Card & shadow */
+  --card: rgba(255,255,255,.90);
+  --shadow: rgba(94, 8, 30, .35);
 }
+
 
 *{box-sizing:border-box}
 body{
