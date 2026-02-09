@@ -9,13 +9,12 @@
 
   /* Buttons */
   --btn:#E24767;       /* bright pink/red */
-  --btnHover:#E48397; /* lighter hover */
+  --btnHover:#E48397;  /* lighter hover */
 
   /* Card & shadow */
   --card: rgba(255,255,255,.90);
   --shadow: rgba(94, 8, 30, .35);
 }
-
 
 *{box-sizing:border-box}
 body{
@@ -48,9 +47,15 @@ body{
 }
 
 .question{
-  margin:0 0 14px;
+  margin:0 0 8px;
   font-size:1.15rem;
   line-height:1.45;
+  white-space:pre-line;
+}
+
+.subnote{
+  margin:0 0 14px;
+  opacity:.85;
 }
 
 .controls{
@@ -77,7 +82,7 @@ body{
 
 .quiz{ margin-top:14px; }
 .quizRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-.quizTitle{ margin:0 0 10px; font-weight:800; color:var(--text) }
+.quizTitle{ margin:0 0 10px; font-weight:800; color:var(--text); white-space:pre-line; }
 input{
   padding:11px 12px;
   border-radius:12px;
@@ -106,3 +111,108 @@ input{
 }
 
 .hidden{ display:none; }
+
+/* --- Hidden answer (hard to spot) --- */
+.secret{
+  position:absolute;
+  right:14px;
+  top:10px;
+  font-size:10px;
+  letter-spacing:.2px;
+  opacity:.14;
+  transform: rotate(-8deg);
+  color: #2b2b2b;
+  user-select:none;
+  pointer-events:none;
+  filter: blur(.15px);
+}
+
+/* --- Slider step --- */
+.sliderBox{ margin-top:12px; }
+.sliderTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:12px;
+  margin-bottom:8px;
+}
+.sliderLabel{
+  font-weight:800;
+  color:var(--text);
+}
+.sliderValue{
+  opacity:.8;
+  font-weight:700;
+}
+input[type="range"]{
+  width:100%;
+  accent-color: var(--btn);
+}
+.milestones{
+  display:flex;
+  justify-content:space-between;
+  font-size:.85rem;
+  opacity:.8;
+  margin-top:8px;
+  gap:10px;
+}
+.milestones span:last-child{
+  font-weight:900;
+  color: var(--text);
+}
+
+/* --- Hedgehog --- */
+.hedgehogBox{ margin-top:10px; text-align:center; }
+.hogText{ margin:0 0 12px; line-height:1.45; }
+.hog{
+  font-size:68px;
+  display:inline-grid;
+  place-items:center;
+  width:110px;
+  height:110px;
+  border-radius:26px;
+  background: rgba(255,255,255,.55);
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  cursor:pointer;
+  user-select:none;
+  transition: transform .12s ease;
+}
+.hog:focus{ outline: 3px solid rgba(226,71,103,.35); outline-offset: 3px; }
+.hog.pet{ transform: scale(1.08) rotate(-2deg); }
+.hog.happy{ animation: happyBop .55s ease-in-out 1; }
+@keyframes happyBop{
+  0%{ transform: scale(1) rotate(0deg); }
+  35%{ transform: scale(1.12) rotate(3deg); }
+  70%{ transform: scale(1.08) rotate(-3deg); }
+  100%{ transform: scale(1) rotate(0deg); }
+}
+.hogHint{ margin:10px 0 0; font-weight:800; color: var(--text); }
+
+/* --- Confetti --- */
+.confetti{
+  position:relative;
+  height:140px;
+  overflow:hidden;
+  margin-top:10px;
+  border-radius:16px;
+  background: rgba(255,255,255,.35);
+}
+.confettiPiece{
+  position:absolute;
+  top:-12px;
+  width:10px;
+  height:14px;
+  border-radius:3px;
+  background: rgba(226,71,103,.95);
+  animation-name: confettiFall;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+}
+.confettiPiece:nth-child(3n){ background: rgba(94, 8, 30, .9); }
+.confettiPiece:nth-child(3n+1){ background: rgba(255,255,255,.9); }
+.confettiPiece:nth-child(3n+2){ background: rgba(181, 26, 58, .9); }
+
+@keyframes confettiFall{
+  0%{ transform: translateY(0) rotate(0deg); opacity:1; }
+  100%{ transform: translateY(170px) rotate(540deg); opacity:0.95; }
+}
