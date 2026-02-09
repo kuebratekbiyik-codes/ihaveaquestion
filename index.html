@@ -5,23 +5,58 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lisa, will you be my Valentine? 💝</title>
-<link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
 </head>
 <body>
   <main class="card" id="card">
+    <!-- hard-to-see hidden answer -->
+    <span class="secret" aria-hidden="true">I don’t just like you, I love you.</span>
+
     <div class="header">
       <h1 id="title">Hi princess 💖</h1>
-      <p id="subtitle">I made this little thing just for you (aka obviously be and ChatGPT cause where the fuck should I have learned how to code a website in JavaScript??).</p>
+      <p id="subtitle">I made this little thing just for you (aka obviously me and ChatGPT cause where the fuck should I have learned how to code a website in JavaScript??).</p>
     </div>
 
     <section class="panel" id="panel">
       <p class="question" id="question"></p>
+      <p class="subnote" id="subnote"></p>
 
+      <!-- Buttons -->
       <div class="controls" id="controls">
         <button class="btn primary" id="yesBtn">Yes</button>
         <button class="btn ghost" id="noBtn">No</button>
+        <button class="btn ghost hidden" id="maybeBtn">Maybe</button>
       </div>
 
+      <!-- Slider step -->
+      <div class="sliderBox hidden" id="sliderBox">
+        <div class="sliderTop">
+          <span class="sliderLabel" id="sliderLabel">Move it 🙂</span>
+          <span class="sliderValue" id="sliderValue"></span>
+        </div>
+        <input id="loveRange" type="range" min="0" max="100" value="10" />
+        <div class="milestones">
+          <span>meh</span>
+          <span>okay okay</span>
+          <span>obsessed</span>
+          <span>to Jupiter and back 🚀</span>
+        </div>
+        <div class="controls" style="margin-top:12px;">
+          <button class="btn primary" id="sliderNext">Next 💞</button>
+        </div>
+      </div>
+
+      <!-- Hedgehog step -->
+      <div class="hedgehogBox hidden" id="hedgehogBox">
+        <p class="hogText" id="hogText">Oh look — a random hedgehog spawned 🦔✨<br/>Go and pet it <b>3</b> times.</p>
+        <div class="hog" id="hog" role="button" tabindex="0" aria-label="Hedgehog">🦔</div>
+        <p class="hogHint" id="hogHint"></p>
+        <div class="controls" style="margin-top:12px;">
+          <button class="btn primary hidden" id="hogNext">Continue 😌</button>
+        </div>
+      </div>
+
+      <!-- Quiz step -->
       <div class="quiz hidden" id="quiz">
         <p class="quizTitle" id="quizTitle"></p>
         <div class="quizRow">
@@ -31,17 +66,19 @@
         <p class="hint" id="quizHint"></p>
       </div>
 
+      <!-- Final -->
       <div class="final hidden" id="final">
         <h2 id="finalTitle"></h2>
         <p id="finalText"></p>
+        <div class="confetti hidden" id="confetti" aria-hidden="true"></div>
         <div class="emojiCloud" id="emojiCloud" aria-hidden="true"></div>
         <button class="btn primary" id="replay">Replay 💞</button>
       </div>
     </section>
 
-    <p class="tiny">Tip: try clicking “No” 😌</p>
+    <p class="tiny" id="tinyTip">Don't you dare clicking “No”… but you can try it 😌</p>
   </main>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>
