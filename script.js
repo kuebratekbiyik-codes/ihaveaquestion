@@ -23,14 +23,17 @@ const CONFIG = {
     subnote: "Be honest. I will be watching 👁️",
     nextText: "Next 💞",
     // purely for fun label while sliding
-    labels: [
-      { at: 0, text: "…hello??" },
-      { at: 15, text: "okay, cute." },
-      { at: 35, text: "mmmhm 😏" },
-      { at: 55, text: "now we're talking" },
-      { at: 75, text: "obsessed, I see" },
-      { at: 100, text: "to Jupiter and back 🚀" }
-    ]
+  labels: [
+    { at: 0, text: "…hello??" },
+    { at: 10, text: "okay, cute." },
+    { at: 25, text: "mmmhm" },
+    { at: 40, text: "that’s suspiciously high" },
+    { at: 55, text: "now we're talking" },
+    { at: 70, text: "DAMN, you're obsessed with me, I see 😏" },
+    { at: 85, text: "STOP, my ego can’t handle this" },
+    { at: 95, text: "okay you’re literally insane (in a hot way)" },
+    { at: 100, text: "to Jupiter and back 🚀" }
+  ]
   },
 
   withChoices: {
@@ -301,14 +304,44 @@ function updateSliderUI() {
     if (v >= item.at) label = item.text;
   }
   sliderLabel.textContent = label;
+
+  // Funny UI reactions
+  if (v >= 85) {
+    sliderNext.classList.add("pulse");
+  } else {
+    sliderNext.classList.remove("pulse");
+  }
+
+  if (v >= 95) {
+    // tiny chaos
+    sliderBox.classList.add("shake");
+    setTimeout(() => sliderBox.classList.remove("shake"), 250);
+  }
+
+  // If they max it out: auto-continue after a short moment
+  if (v === 100) {
+    sliderLabel.textContent = "TO JUPITER AND BACK??? okay you win 😭🚀";
+    sliderNext.textContent = "Auto-advancing… 💞";
+    sliderNext.disabled = true;
+
+    // prevent multiple timers
+    if (!sliderNext.dataset.auto) {
+      sliderNext.dataset.auto = "1";
+      setTimeout(() => {
+        sliderNext.disabled = false;
+        sliderNext.textContent = CONFIG.slider.nextText || "Next 💞";
+        sliderNext.dataset.auto = "";
+        step = 2;
+        renderStep();
+      }, 900);
+    }
+  } else {
+    sliderNext.textContent = CONFIG.slider.nextText || "Next 💞";
+    sliderNext.disabled = false;
+    sliderNext.dataset.auto = "";
+  }
 }
 
-loveRange.addEventListener("input", updateSliderUI);
-
-sliderNext.addEventListener("click", () => {
-  step = 2;
-  renderStep();
-});
 
 // --- Hedgehog petting
 function pet() {
