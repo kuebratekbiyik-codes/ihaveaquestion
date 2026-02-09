@@ -4,7 +4,10 @@
 const CONFIG = {
   valentineName: "Lisa",
   pageTitle: "Lisa, will you be my Valentine? 💝",
-
+  header: {
+    title: "Hi princess 💖",
+    subtitle: "I made this"
+  },
   // Your insider line + quiz
   insiderLine: "I love you to Jupiter and back… with a tiny picnic on Enceladus. 🌙✨",
   quiz: {
@@ -75,8 +78,8 @@ function setStep(i) {
   step = i;
   const s = CONFIG.steps[step];
 
-  titleEl.textContent = `Hi ${CONFIG.valentineName} 💖`;
-  subtitleEl.textContent = "I made this little thing just for you.";
+  titleEl.textContent = CONFIG.header.title;
+  subtitleEl.textContent = CONFIG.header.subtitle;
 
   qEl.textContent = s.text;
   yesBtn.textContent = s.yes;
