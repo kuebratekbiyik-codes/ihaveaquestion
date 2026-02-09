@@ -248,7 +248,7 @@ noBtn.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
   noBtn.blur();
-  qEl.textContent = CONFIG.step1.teaseOnNo;
+  qEl.textContent = CONFIG.step1.teaseOnNo + " (psst… there’s a hidden answer somewhere 👀)";
 }, true);
 
 // Dodge No on hover for forbidden steps
