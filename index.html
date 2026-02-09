@@ -5,16 +5,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lisa, will you be my Valentine? 💝</title>
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
   <main class="card" id="card">
-    <!-- hard-to-see hidden answer -->
+    <!-- Optional extra hidden hint (super subtle) -->
     <span class="secret" aria-hidden="true">I don’t just like you, I love you.</span>
 
     <div class="header">
       <h1 id="title">Hi princess 💖</h1>
-      <p id="subtitle">I made this little thing just for you (aka obviously me and ChatGPT cause where the fuck should I have learned how to code a website in JavaScript??).</p>
+      <p id="subtitle">
+        I made this little thing just for you (aka obviously me and ChatGPT cause where the fuck should I have learned how to code a website in JavaScript??).
+      </p>
     </div>
 
     <section class="panel" id="panel">
@@ -32,15 +34,18 @@
       <div class="sliderBox hidden" id="sliderBox">
         <div class="sliderTop">
           <span class="sliderLabel" id="sliderLabel">Move it 🙂</span>
-          <span class="sliderValue" id="sliderValue"></span>
+          <span class="sliderValue" id="sliderValue">10%</span>
         </div>
+
         <input id="loveRange" type="range" min="0" max="100" value="10" />
-        <div class="milestones">
+
+        <div class="milestones" aria-hidden="true">
           <span>meh</span>
           <span>okay okay</span>
           <span>obsessed</span>
           <span>to Jupiter and back 🚀</span>
         </div>
+
         <div class="controls" style="margin-top:12px;">
           <button class="btn primary" id="sliderNext">Next 💞</button>
         </div>
@@ -48,7 +53,10 @@
 
       <!-- Hedgehog step -->
       <div class="hedgehogBox hidden" id="hedgehogBox">
-        <p class="hogText" id="hogText">Oh look — a random hedgehog spawned 🦔✨<br/>Go and pet it <b>3</b> times.</p>
+        <p class="hogText" id="hogText">
+          Oh look — a random hedgehog spawned 🦔✨<br/>
+          Go and pet it <b>3</b> times.
+        </p>
         <div class="hog" id="hog" role="button" tabindex="0" aria-label="Hedgehog">🦔</div>
         <p class="hogHint" id="hogHint"></p>
         <div class="controls" style="margin-top:12px;">
@@ -76,11 +84,12 @@
       </div>
     </section>
 
+    <!-- Tiny tip also carries the hidden answer (hard to see) -->
     <p class="tiny" id="tinyTip" data-secret="I don’t just like you, I love you.">
-  Don't you dare clicking “No”… but you can try it 😌
+      Don't you dare clicking “No”… but you can try it 😌
     </p>
   </main>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>
