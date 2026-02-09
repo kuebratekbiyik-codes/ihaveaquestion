@@ -6,7 +6,7 @@ const CONFIG = {
   pageTitle: "Lisa, will you be my Valentine? 💝",
   header: {
     title: "Hi princess 💖",
-    subtitle: "I made this"
+    subtitle: "I made this little thing just for you (aka obviously be and ChatGPT cause where the fuck should I have learned how to code a website in JavaScript??)."
   },
   // Your insider line + quiz
   insiderLine: "I love you to Jupiter and back… with a tiny picnic on Enceladus. 🌙✨",
