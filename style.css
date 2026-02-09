@@ -1,17 +1,13 @@
 /* style.css */
 :root{
-  /* Background gradient */
-  --bg1:#5E081E;   /* dark wine red */
-  --bg2:#E48397;   /* soft pink */
+  --bg1:#5E081E;
+  --bg2:#E48397;
 
-  /* Text & accents */
-  --text:#B51A3A;  /* strong valentine red */
+  --text:#B51A3A;
 
-  /* Buttons */
-  --btn:#E24767;       /* bright pink/red */
-  --btnHover:#E48397;  /* lighter hover */
+  --btn:#E24767;
+  --btnHover:#E48397;
 
-  /* Card & shadow */
   --card: rgba(255,255,255,.90);
   --shadow: rgba(94, 8, 30, .35);
 }
@@ -76,13 +72,12 @@ body{
 .primary{ background:var(--btn); color:white; }
 .primary:hover{ background:var(--btnHover); }
 
-.ghost{
-  background: rgba(0,0,0,.08);
-}
+.ghost{ background: rgba(0,0,0,.08); }
 
 .quiz{ margin-top:14px; }
 .quizRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
 .quizTitle{ margin:0 0 10px; font-weight:800; color:var(--text); white-space:pre-line; }
+
 input{
   padding:11px 12px;
   border-radius:12px;
@@ -91,7 +86,7 @@ input{
   font-size:1rem;
 }
 
-.hint{ margin:10px 0 0; opacity:.8; }
+.hint{ margin:10px 0 0; opacity:.85; }
 
 .final{ margin-top:14px; }
 .final h2{ margin:0 0 8px; color:var(--text) }
@@ -108,11 +103,23 @@ input{
   margin:14px 0 0;
   font-size:.95rem;
   opacity:.72;
+  position:relative;
 }
 
 .hidden{ display:none; }
 
-/* --- Hidden answer (hard to spot) --- */
+/* Extra hidden answer embedded in tiny tip */
+.tiny::after{
+  content: " " attr(data-secret);
+  font-size: 10px;
+  opacity: .07;
+  letter-spacing: .15px;
+  filter: blur(.5px);
+  user-select:none;
+  pointer-events:none;
+}
+
+/* Optional super-subtle secret stamp */
 .secret{
   position:absolute;
   right:12px;
@@ -128,8 +135,7 @@ input{
   mix-blend-mode: multiply;
 }
 
-
-/* --- Slider step --- */
+/* --- Slider --- */
 .sliderBox{ margin-top:12px; }
 .sliderTop{
   display:flex;
@@ -138,18 +144,14 @@ input{
   gap:12px;
   margin-bottom:8px;
 }
-.sliderLabel{
-  font-weight:800;
-  color:var(--text);
-}
-.sliderValue{
-  opacity:.8;
-  font-weight:700;
-}
+.sliderLabel{ font-weight:800; color:var(--text); }
+.sliderValue{ opacity:.8; font-weight:700; }
+
 input[type="range"]{
   width:100%;
   accent-color: var(--btn);
 }
+
 .milestones{
   display:flex;
   justify-content:space-between;
@@ -161,6 +163,14 @@ input[type="range"]{
 .milestones span:last-child{
   font-weight:900;
   color: var(--text);
+}
+
+/* pulse for slider next */
+.pulse{ animation: pulse .9s ease-in-out infinite; }
+@keyframes pulse{
+  0%{ transform: scale(1); }
+  50%{ transform: scale(1.05); }
+  100%{ transform: scale(1); }
 }
 
 /* --- Hedgehog --- */
@@ -218,39 +228,3 @@ input[type="range"]{
   0%{ transform: translateY(0) rotate(0deg); opacity:1; }
   100%{ transform: translateY(170px) rotate(540deg); opacity:0.95; }
 }
-
-/* --- Ultra-hidden answer embedded in the tiny tip --- */
-.tiny{
-  position:relative;
-}
-.tiny::after{
-  content: " " attr(data-secret);
-  font-size: 10px;
-  opacity: .07;
-  letter-spacing: .15px;
-  filter: blur(.5px);
-  user-select:none;
-  pointer-events:none;
-}
-
-/* --- Slider funny reactions --- */
-.pulse{
-  animation: pulse .9s ease-in-out infinite;
-}
-@keyframes pulse{
-  0%{ transform: scale(1); }
-  50%{ transform: scale(1.05); }
-  100%{ transform: scale(1); }
-}
-
-.shake{
-  animation: shake .18s linear 2;
-}
-@keyframes shake{
-  0%{ transform: translateX(0); }
-  25%{ transform: translateX(-3px); }
-  50%{ transform: translateX(3px); }
-  75%{ transform: translateX(-2px); }
-  100%{ transform: translateX(0); }
-}
-
