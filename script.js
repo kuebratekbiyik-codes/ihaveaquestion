@@ -88,6 +88,8 @@ const CONFIG = {
 // --- DOM
 document.title = CONFIG.pageTitle;
 
+const secretBtn = document.getElementById("secretBtn");
+
 const titleEl = document.getElementById("title");
 const subtitleEl = document.getElementById("subtitle");
 const qEl = document.getElementById("question");
@@ -199,6 +201,8 @@ function renderStep() {
   setHeader();
   hideAllPanels();
   resetButtons();
+  // default: hide secret button except step 0
+  secretBtn.classList.add("hidden");
 
   // reset small UI states
   subEl.textContent = "";
@@ -216,6 +220,8 @@ function renderStep() {
     tinyTip.textContent = CONFIG.step1.subnote;
     yesBtn.textContent = CONFIG.step1.yes;
     noBtn.textContent = CONFIG.step1.no;
+    // show secret button only on step 1
+    secretBtn.classList.remove("hidden");
     return;
   }
 
@@ -306,10 +312,11 @@ noBtn.addEventListener("mouseenter", () => {
 
 // Yes: global logic
 yesBtn.addEventListener("click", () => {
-  if (step === 0) {
-    step = 1;
-    renderStep();
-    return;
+    if (step === 0) {
+      qEl.textContent = "…think again… maybe there is a secret button out here somewhere 👀";
+      subEl.textContent = "";
+      return;
+    }
   }
 
   if (step === 2) {
@@ -449,3 +456,10 @@ replayBtn.addEventListener("click", () => {
 
 // start
 renderStep();
+
+secretBtn.addEventListener("click", () => {
+  if (step !== 0) return;
+  step = 1;
+  renderStep();
+});
+
