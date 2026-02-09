@@ -283,4 +283,137 @@ yesBtn.addEventListener("click", () => {
 // --- Step 2: option B (noBtn) and option C (maybeBtn)
 noBtn.addEventListener("click", () => {
   if (step !== 2) return;
-  qEl.textContent = CONFIG.
+  qEl.textContent = CONFIG.withChoices.wrongTease;
+});
+maybeBtn.addEventListener("click", () => {
+  if (step !== 2) return;
+  qEl.textContent = CONFIG.withChoices.wrongTease;
+});
+
+// --- Slider UI
+function updateSliderUI() {
+  const v = Number(loveRange.value);
+  sliderValue.textContent = `${v}%`;
+
+  // pick label closest <= v
+  let label = "Move it 🙂";
+  for (const item of CONFIG.slider.labels) {
+    if (v >= item.at) label = item.text;
+  }
+  sliderLabel.textContent = label;
+}
+
+loveRange.addEventListener("input", updateSliderUI);
+
+sliderNext.addEventListener("click", () => {
+  step = 2;
+  renderStep();
+});
+
+// --- Hedgehog petting
+function pet() {
+  hogPets += 1;
+  hog.classList.add("pet");
+  setTimeout(() => hog.classList.remove("pet"), 140);
+
+  if (hogPets <= 3) {
+    hogHint.textContent = CONFIG.hedgehog.afterEach[hogPets - 1];
+  }
+
+  if (hogPets >= 3) {
+    hogHint.textContent = CONFIG.hedgehog.afterDone;
+    hogNext.classList.remove("hidden");
+
+    // sweet little effect
+    hog.classList.add("happy");
+    setTimeout(() => hog.classList.remove("happy"), 800);
+  }
+}
+
+hog.addEventListener("click", () => {
+  if (hogPets >= 3) return;
+  pet();
+});
+hog.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    if (hogPets >= 3) return;
+    pet();
+  }
+});
+
+hogNext.addEventListener("click", () => {
+  step = 4;
+  renderStep();
+});
+
+// --- Quiz submit
+quizSubmit.addEventListener("click", () => {
+  const ans = normalize(quizInput.value);
+  const correct = normalize(CONFIG.quiz.accepted);
+
+  if (ans === correct) {
+    quizHint.textContent = CONFIG.quiz.correctMsg;
+    step = 5;
+    renderStep();
+  } else {
+    // two-stage hint: first generic, then "starts with r" if they keep failing
+    if (!quizHint.dataset.triedOnce) {
+      quizHint.textContent = CONFIG.quiz.wrongMsg;
+      quizHint.dataset.triedOnce = "1";
+    } else {
+      quizHint.textContent = CONFIG.quiz.wrongMsg2;
+    }
+  }
+});
+
+quizInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") quizSubmit.click();
+});
+
+// --- Final celebration
+function showFinalWithConfetti() {
+  hideAllPanels();
+  hide(controls);
+  show(finalBox);
+
+  finalTitle.textContent = CONFIG.final.title;
+  finalText.textContent = CONFIG.final.message;
+  emojiCloud.textContent = CONFIG.final.emojis.split("").join(" ");
+
+  fireConfetti();
+}
+
+function fireConfetti() {
+  confetti.classList.remove("hidden");
+  confetti.innerHTML = "";
+
+  const pieces = 90;
+  for (let i = 0; i < pieces; i++) {
+    const p = document.createElement("span");
+    p.className = "confettiPiece";
+
+    // randomize a bit
+    const left = Math.random() * 100;
+    const delay = Math.random() * 0.6;
+    const dur = 1.8 + Math.random() * 1.6;
+    const rot = Math.random() * 360;
+
+    p.style.left = `${left}%`;
+    p.style.animationDelay = `${delay}s`;
+    p.style.animationDuration = `${dur}s`;
+    p.style.transform = `rotate(${rot}deg)`;
+
+    confetti.appendChild(p);
+  }
+}
+
+// --- Replay
+replayBtn.addEventListener("click", () => {
+  step = 0;
+  quizHint.dataset.triedOnce = "";
+  renderStep();
+});
+
+// start
+renderStep();
