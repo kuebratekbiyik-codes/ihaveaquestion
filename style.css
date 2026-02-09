@@ -115,17 +115,19 @@ input{
 /* --- Hidden answer (hard to spot) --- */
 .secret{
   position:absolute;
-  right:14px;
+  right:12px;
   top:10px;
   font-size:10px;
   letter-spacing:.2px;
-  opacity:.14;
-  transform: rotate(-8deg);
-  color: #2b2b2b;
+  opacity:.09;
+  transform: rotate(-11deg);
+  color: rgba(27,27,27,.85);
   user-select:none;
   pointer-events:none;
-  filter: blur(.15px);
+  filter: blur(.55px);
+  mix-blend-mode: multiply;
 }
+
 
 /* --- Slider step --- */
 .sliderBox{ margin-top:12px; }
@@ -216,3 +218,39 @@ input[type="range"]{
   0%{ transform: translateY(0) rotate(0deg); opacity:1; }
   100%{ transform: translateY(170px) rotate(540deg); opacity:0.95; }
 }
+
+/* --- Ultra-hidden answer embedded in the tiny tip --- */
+.tiny{
+  position:relative;
+}
+.tiny::after{
+  content: " " attr(data-secret);
+  font-size: 10px;
+  opacity: .07;
+  letter-spacing: .15px;
+  filter: blur(.5px);
+  user-select:none;
+  pointer-events:none;
+}
+
+/* --- Slider funny reactions --- */
+.pulse{
+  animation: pulse .9s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%{ transform: scale(1); }
+  50%{ transform: scale(1.05); }
+  100%{ transform: scale(1); }
+}
+
+.shake{
+  animation: shake .18s linear 2;
+}
+@keyframes shake{
+  0%{ transform: translateX(0); }
+  25%{ transform: translateX(-3px); }
+  50%{ transform: translateX(3px); }
+  75%{ transform: translateX(-2px); }
+  100%{ transform: translateX(0); }
+}
+
